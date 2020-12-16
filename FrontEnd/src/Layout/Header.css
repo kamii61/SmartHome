@@ -1,0 +1,78 @@
+@font-face {
+    font-family: 'Downtown';
+    src:  url(../asset/font/Downtown\ v1.01.ttf) ;
+  }
+
+.navbar{
+    justify-content: space-around;
+    background-color: #0C1586;
+}
+
+#headerNav{
+    margin: auto;
+}
+
+#headerNav a{
+    color:white;
+    font-family: 'Downtown';
+    font-size: 30px;
+}
+
+#headerNav li{
+    margin-right: 16px;
+    
+}
+
+#headerNav li a{
+    transition: all .5s;
+}
+
+#headerNav li:hover a{
+    color: #FC77DC;
+
+}
+
+/* nav second */
+
+.navSecond{
+    position: fixed;
+    right: 0;
+    top: 0;
+
+    width: 100px;
+    height: 100%;
+
+    border: 1px solid #151515;
+
+    transform: translateX(100px);
+    transition: all .5s;
+
+}
+
+.btn-navSecond:hover  .navSecond{
+    transform: translateX(0);
+}
+
+.navSecond__info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 100%;
+    width: 100%;
+
+    background: linear-gradient(to bottom, #EF8CE2, #E42DC1);
+    background-size: cover;
+    
+
+}
+
+.navSecond__info a{
+    font-size: 25px;
+    transition: all .5s;
+}
+
+.navSecond__info li:hover a i{
+    color: turquoise;
+}

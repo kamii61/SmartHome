@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "Downtown";
+  src: url(../asset/font/Downtown\ v1.01.ttf);
+}
+
+.bgFooter {
+  background-color: #000087;
+  font-family: "Downtown";
+}
+
+ul {
+  list-style-type: none;
+}
+
+.footer-nav li a {
+  font-size: 25px;
+}
+
+.footer-contact ul {
+  display: flex;
+  font-size: 30px;
+}
+
+.footer-contact ul li{
+    margin-right: 10px;
+  }
