@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.bgHome{
+    background: radial-gradient(#F2A4E8,#EB4FD2);
+
+    position: fixed;
+    width: 100%;
+    height: 100%;
+
+    background-size: cover;
+}
+
+.icon-list a {
+    width: 70px;
+    height: 20px;
+
+    font-size: 30px;
+}
+
+/* main */
+
+/* section intro */
+/* .homeIntro{
+    display: flex;
+    justify-content: space-around;
+}*/
+
+.icon-list, .icon-next{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+} 
+
+.icon-next a {
+    color: white;
+    font-size: 30px;
+}

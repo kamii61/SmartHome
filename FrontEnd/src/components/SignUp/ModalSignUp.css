@@ -1,0 +1,84 @@
+.modal-body{
+    background-color: #BF238B;
+}
+.card-signin {
+    border: 0;
+    border-radius: 2rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .card-signin .card-title {
+    margin-bottom: 2rem;
+    font-weight: 300;
+    font-size: 1.5rem;
+  }
+  
+  .card-signin .card-img-left {
+    width: 50%;
+    /* Link to your background image using in the property below! */
+    background: scroll center url('https://source.unsplash.com/WEQbe2jBg40/414x512');
+    background-size: cover;
+  }
+  
+  .card-signin .card-body {
+    padding: 2rem;
+  }
+  
+  .form-signin {
+    width: 100%;
+  }
+  
+  .form-signin {
+    font-size: 80%;
+    border-radius: 5rem;
+    letter-spacing: .1rem;
+    font-weight: bold;
+    /* padding: 1rem; */
+    transition: all 0.2s;
+  }
+
+  .btn{
+      border-radius: 0;
+      border: none;
+  }
+  
+  .form-label-group {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+
+
+  
+  .form-label-group input {
+    height: auto;
+    border: none;
+ 
+    border-bottom: 2px solid #AA26BC;
+  }
+
+  .form-control:focus{
+      
+     box-shadow: none;
+  }
+  
+  .form-label-group>input,
+  .form-label-group>label {
+    padding: var(--input-padding-y) var(--input-padding-x);
+  }
+
+  .btn-register{
+    color: white;
+    background-image: linear-gradient(to right, #8C4FC9, #CE2ABB);;
+  }
+  
+  .btn-google {
+    color: white;
+    background-image: linear-gradient(to right, #D2352C, #CF29B7);
+  }
+  
+  .btn-facebook {
+    color: white;
+    background-image:linear-gradient( to right, #2D4486, #3393EF);
+  }
+  
