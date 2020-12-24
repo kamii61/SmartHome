@@ -1,7 +1,12 @@
 import React from "react";
 import styleSignUp from "./ModalSignUp.module.css";
+import GoogleLogin from "react-google-login";
 
 export default function ModalSignUp() {
+  const responseGoogle = (response) => {
+    console.log(response);
+    console.log(response.profileObj);
+  };
   return (
     <>
       <div>
@@ -101,13 +106,21 @@ export default function ModalSignUp() {
                             Sign In
                           </a>
                           <hr className="my-4" />
-                          <button
-                            className="btn btn-lg btn-google btn-block text-uppercase"
-                            type="submit"
+                          <GoogleLogin
+                            clientId="843820121517-gd9pf3qtfq9vl1dkkj51o86kqgtoa31f.apps.googleusercontent.com"
+                            onSuccess={responseGoogle}
+                            onFailure={responseGoogle}
+                            cookiePolicy={"single_host_origin"}
+                            buttonText="login"
                           >
-                            <i className="fab fa-google mr-2" /> Sign up with
-                            Google
-                          </button>
+                            {/* <button
+                              className="btn btn-lg btn-google btn-block text-uppercase"
+                              type="submit"
+                            >
+                              <i className="fab fa-google mr-2" /> Sign up with
+                              Google
+                            </button> */}
+                          </GoogleLogin>
                           <button
                             className="btn btn-lg btn-facebook btn-block text-uppercase"
                             type="submit"

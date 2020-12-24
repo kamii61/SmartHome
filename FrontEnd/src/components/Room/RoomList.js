@@ -16,12 +16,10 @@ class RoomList extends Component {
   render() {
     return (
       <>
-        <div className="items__info ">
-          <div className="row">
-            <ModalUser style={{ display: "inline" }} />
+        <div className="row items__info">
+          <ModalUser style={{ display: "inline" }} />
 
-            <span>Nguyen Van A</span>
-          </div>
+          <span>Nguyen Van A</span>
         </div>
 
         {/* Room */}
