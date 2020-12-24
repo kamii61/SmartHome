@@ -1,14 +1,37 @@
-const express =require("express");
-const app = express();
-const cors  = require("cors");
-const pool= require("./db");
+var express =require("express");
+var app = express();
+var cors  = require("cors");
+var pool= require("./db");
+/////////
+var routes = require('./routes');
+ var path = require('path');
+var	fileUpload = require('express-fileupload');
+var bodyParser = require("body-parser");
+	
+
+ 
+// all environments
+
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(fileUpload());
+ 
+// development only
+ 
 
 //middle ware
-app.use(cors());
-app.use(express.json());//req.body
+ //app.use(cors());
+// app.use(express.json());//req.body
 //ROUTES//
 
 //create a smarthome//clients
+app.get('/', routes.index);//call for main index page
+app.post('/', routes.index);//call for signup post 
+app.get('/profile/:id',routes.profile);
+///////////////
 app.post("/clients", async ( req, res) => { 
 
 try {
