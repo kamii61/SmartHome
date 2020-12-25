@@ -113,7 +113,7 @@ const ModalRoom = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
   );
 };
 

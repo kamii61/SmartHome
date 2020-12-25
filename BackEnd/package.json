@@ -4,13 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --watch src src/index.js"
+=======
+    "test": "echo \"Error: no test specified\" && exit 1"
+>>>>>>> e86cec3613e572d871f3429e6f9867695a6b526b
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "multer": "^1.4.2",
@@ -18,5 +23,13 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.6"
+=======
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
+    "pg": "^8.5.1"
+>>>>>>> e86cec3613e572d871f3429e6f9867695a6b526b
   }
 }
