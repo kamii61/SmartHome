@@ -3,23 +3,34 @@ import { connect } from "react-redux";
 import Axios from "axios";
 
 const ModalEditRoom = (props) => {
-  let [selectedRoom, setSelectedRoom] = useState({});
+  let [selectedRoom, setSelectedRoom] = useState("");
 
-  selectedRoom = props.roomRedux.values;
+  // selectedRoom = { ...props.roomRedux.values };
   const onChange = (e) => {
-    setSelectedRoom({ ...selectedRoom, [e.target.name]: e.target.value });
+    // setSelectedRoom({ ...selectedRoom, [e.target.name]: e.target.value });
+
+    let { value, name } = e.target;
+    const newValues = { ...props.roomRedux.values }; // luu tru lai cac gia tri truoc user da nhap
+    newValues[name] = value; // gan gia tri moi cho thuoc tinh dang nhap
+
+    setSelectedRoom(value);
+
+    props.dispatch({
+      type: "SET_ROOM_REDUX",
+      roomRedux: {
+        values: newValues,
+      },
+    });
   };
 
   // Submit form
   const onSubmitForm = async (e) => {
     e.preventDefault();
-    console.log("room name selec", selectedRoom.room_name);
-    updateRoom(selectedRoom.room_name);
-  };
+    console.log("room name select", selectedRoom);
 
-  // update room
-  const updateRoom = async (room_id) => {
-    let response = await Axios({
+    const room_id = props.roomRedux.values.room_id;
+
+    await Axios({
       method: "PUT",
       url: `http://localhost:8000/rooms/${room_id}`,
       data: {
@@ -27,7 +38,11 @@ const ModalEditRoom = (props) => {
       },
     })
       .then((response) => {
-        console.log(response.data);
+        props.dispatch({
+          type: "UPDATE_ROOM",
+          payload: response.data,
+        });
+        props.getRoomList();
       })
       .catch((err) => console.log(err));
   };
@@ -41,7 +56,7 @@ const ModalEditRoom = (props) => {
         data-toggle="modal"
         data-target="#modelEditRoom"
         onClick={() => {
-          props.editRoom(props.room_id);
+          props.getRoomById(props.room_id);
           console.log("selectedRoom", selectedRoom);
         }}
       >
@@ -79,7 +94,8 @@ const ModalEditRoom = (props) => {
                       className="form-control"
                       name="room_id"
                       disabled
-                      value={selectedRoom.room_id}
+                      // value={selectedRoom.room_id}
+                      value={props.roomRedux.values.room_id}
                       onChange={onChange}
                     />
                   </div>
@@ -90,7 +106,8 @@ const ModalEditRoom = (props) => {
                       className="form-control"
                       name="room_name"
                       onChange={onChange}
-                      value={selectedRoom.room_name}
+                      // value={selectedRoom.room_name}
+                      value={props.roomRedux.values.room_name}
                     />
                   </div>
                   <div className="form-group">
@@ -117,9 +134,9 @@ const ModalEditRoom = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  roomList: state.room.roomList,
-  roomRedux: state.room.roomRedux,
-  roomEdit: state.room.roomEdit,
+  roomList: state.RoomReducer.roomList,
+  roomRedux: state.RoomReducer.roomRedux,
+  roomEdit: state.RoomReducer.roomEdit,
 });
 
 export default connect(mapStateToProps)(ModalEditRoom);

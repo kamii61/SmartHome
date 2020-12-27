@@ -1,16 +1,15 @@
-const express = require("express");
-const app = express();
-const cors = require("cors");
-const pool = require("./db");
-const routes = require("./routes");
-const path = require("path");
-const fileUpload = require("express-fileupload");
-const bodyParser = require("body-parser");
+var express = require("express");
+var app = express();
+var cors = require("cors");
+var pool = require("./db");
+/////////
+var routes = require("./routes");
+var path = require("path");
+var fileUpload = require("express-fileupload");
+var bodyParser = require("body-parser");
 
-//middle ware
-app.use(cors());
-app.use(express.json()); //req.body
-//ROUTES//
+// all environments
+
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -20,17 +19,22 @@ app.use(fileUpload());
 
 // development only
 
-app.get("/", routes.index); //call for main index page
-app.post("/", routes.index); //call for signup post
-app.get("/profile/:id", routes.profile);
+//middle ware
+app.use(cors());
+app.use(express.json()); //req.body
+//ROUTES//
 
 //create a smarthome//clients
-app.post("/clients", async (req, res, next) => {
+// app.get("/", routes.index); //call for main index page
+// app.post("/", routes.index); //call for signup post
+// app.get("/profile/:id", routes.profile);
+///////////////
+app.post("/clients", async (req, res) => {
   try {
     const { client_name, client_password, contact, email } = req.body;
     const { client_id } = req.params;
     const newClient = await pool.query(
-      "INSERT INTO clients (client_name,client_password,contact,email) VALUES($1,$2,$3,$4,$5) RETURNING *",
+      "INSERT INTO clients (client_name,client_password,contact,email) VALUES($1,$2,$3,$4) RETURNING *",
       [client_name, client_password, contact, email]
     );
     res.json(newClient.rows[0]);
@@ -161,11 +165,11 @@ app.delete("/items/:id", async (req, res) => {
 //room
 app.post("/rooms", async (req, res) => {
   try {
-    const { item_id, room_name } = req.body;
+    const { item_id, room_name, room_image } = req.body;
     const { room_id } = req.params;
     const newRoom = await pool.query(
-      "INSERT INTO rooms (item_id,room_name) VALUES($1,$2) RETURNING *",
-      [item_id, room_name]
+      "INSERT INTO rooms (item_id,room_name, room_image) VALUES($1,$2,$3) RETURNING *",
+      [item_id, room_name, room_image]
     );
     res.json(newRoom.rows[0]);
   } catch (error) {
@@ -198,11 +202,11 @@ app.get("/rooms/:id", async (req, res) => {
 //put
 app.put("/rooms/:id", async (req, res) => {
   try {
-    const { item_id, room_name } = req.body;
+    const { item_id, room_name, room_image } = req.body;
     const { id } = req.params;
     const putRooms = await pool.query(
-      "UPDATE rooms SET item_id=$1,room_name=$2  WHERE room_id  = $3",
-      [item_id, room_name, id]
+      "UPDATE rooms SET item_id=$1,room_name=$2, room_image=$3  WHERE room_id  = $4",
+      [item_id, room_name, room_image, id]
     );
     res.json("Updated");
   } catch (error) {

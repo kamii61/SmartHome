@@ -22,7 +22,7 @@ class Room extends Component {
 
             {/* btn edit room */}
 
-            <ModalEditRoom editRoom={this.editRoom} room_id={room_id} />
+            <ModalEditRoom getRoomById={this.getRoomById} room_id={room_id} />
 
             {/* btn remove room */}
             <button
@@ -45,7 +45,9 @@ class Room extends Component {
               </div>
               <div className="col-6">
                 <h4>Huminity</h4>
-                <p>150</p>
+                <p>
+                  150<span>%</span>
+                </p>
               </div>
             </div>
           </div>
@@ -75,7 +77,7 @@ class Room extends Component {
 
   // Edit room
   // the first: get data by id
-  editRoom = (room_id) => {
+  getRoomById = (room_id) => {
     Axios({
       method: "GET",
       url: `http://localhost:8000/rooms/${room_id}`,
@@ -83,7 +85,7 @@ class Room extends Component {
       .then((res) => {
         //console.log(res.data);
         this.props.dispatch({
-          type: "EDIT_ROOM",
+          type: "GET_ROOM_ID",
           payload: res.data,
           room_id,
         });

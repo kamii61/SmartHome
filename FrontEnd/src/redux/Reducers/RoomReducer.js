@@ -6,9 +6,11 @@ let defaultState = {
   },
 };
 
-const RoomReducer = (state = defaultState, action) => {
+export const RoomReducer = (state = defaultState, action) => {
   switch (action.type) {
+    // Get data from server and load data to UI
     case "FETCH_ROOM": {
+      console.log(action.payload);
       state.roomList = action.payload;
       return { ...state };
     }
@@ -33,19 +35,21 @@ const RoomReducer = (state = defaultState, action) => {
       return { ...state };
     }
 
-    case "EDIT_ROOM": {
+    case "GET_ROOM_ID": {
       //cap nhat la state
       state.roomEdit = { ...action.payload };
-      console.log("edit room", state.roomEdit);
 
       let newRoomRedux = { ...state.roomRedux };
       newRoomRedux.values = { ...action.payload };
 
       return { ...state, roomRedux: newRoomRedux };
     }
+
+    case "UPDATE_ROOM": {
+      console.log("update room", action.payload);
+      return { ...state };
+    }
     default:
       return state;
   }
 };
-
-export default RoomReducer;
