@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
@@ -22,15 +21,15 @@ function App() {
     <Provider store={store}>
       <div className="App">
         <Router>
-          <switch>
-            <Header />
-            <Route path="/" exact component={Home} />
+          <Header />
+          <Switch>
             <Route path="/item" component={Items} />
             <Route path="/about" component={About} />
             <Route path="/signup" component={ModalSignUp} />
             <Route path="/login" component={ModalLogin} />
-            <Footer />
-          </switch>
+            <Route path="/" exact component={Home} />
+          </Switch>
+          <Footer />
         </Router>
       </div>
     </Provider>
