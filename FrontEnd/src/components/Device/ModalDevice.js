@@ -35,14 +35,15 @@ export default class ModalDevice extends Component {
                   <span aria-hidden="true">×</span>
                 </button>
               </div>
-              <div className="modal-body">
+              <div className="modal-body text-dark">
                 <form>
                   <div className="form-group">
-                    <label for="idDevice">ID</label>
+                    <label for="ID">ID</label>
                     <input
                       type="text"
                       className="form-control"
-                      name="idDevice"
+                      name="item_id"
+                      disabled
                     />
                   </div>
                   <div className="form-group">
@@ -50,7 +51,7 @@ export default class ModalDevice extends Component {
                     <input
                       type="text"
                       className="form-control"
-                      name="nameDevice"
+                      name="item_name"
                     />
                   </div>
                   <div className="form-group">
@@ -58,11 +59,11 @@ export default class ModalDevice extends Component {
                       <label htmlFor="Image" className="col-2">
                         Image
                       </label>
-                      <input type="file" className="col-10" name="fileDevice" />
+                      <input type="file" className="col-10" name="item_image" />
                     </div>
                     <div id="image-show" />
                   </div>
-                  <button type="submit" className="btn">
+                  <button type="submit" className="btn btn-success">
                     ADD
                   </button>
                 </form>

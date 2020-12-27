@@ -9,15 +9,15 @@ class RoomList extends Component {
   //   render roomList from data
   renderRoom = () => {
     return this.props.roomList.map((room, index) => {
-      return <Room room={room} />;
+      return <Room room={room} key={index} getRoomList={this.getRoomList} />;
     });
   };
 
   render() {
     return (
       <>
-        <div className="items__info ">
-          <div className="row">
+        <div className="items__info row">
+          <div className="col-12">
             <ModalUser style={{ display: "inline" }} />
 
             <span>Nguyen Van A</span>
@@ -27,15 +27,17 @@ class RoomList extends Component {
         {/* Room */}
         {this.renderRoom()}
 
-        <div className="row ">
-          <ModalRoom getRoomList={this.getRoomList} />
+        <div className="row mt-3">
+          <div className="col-12">
+            <ModalRoom getRoomList={this.getRoomList} />
+          </div>
         </div>
       </>
     );
   }
 
-  getRoomList = () => {
-    Axios({
+  getRoomList = async () => {
+    await Axios({
       method: "GET",
       url: "http://localhost:8000/rooms",
     })
@@ -57,7 +59,7 @@ class RoomList extends Component {
 }
 // get data from redux
 const mapStateToProps = (state) => ({
-  roomList: state.room.roomList,
+  roomList: state.RoomReducer.roomList,
 });
 
 export default connect(mapStateToProps)(RoomList);

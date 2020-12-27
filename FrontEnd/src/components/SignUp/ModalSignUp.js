@@ -25,7 +25,7 @@ export default function ModalSignUp() {
         >
           <div className="modal-dialog modal-lg" role="document">
             <div className="modal-content">
-              <div className="modal-body">
+              <div className="modal-body form-signup">
                 <button
                   type="button"
                   className="close"
@@ -36,7 +36,7 @@ export default function ModalSignUp() {
                 </button>
 
                 <div className="row">
-                  <div className="col-lg-10 col-xl-9 mx-auto">
+                  <div className="col-12 mx-auto">
                     <div className={`card card-signin flex-row my-5`}>
                       <div className="card-img-left d-none d-md-flex">
                         {/* Background image for card set in CSS! */}

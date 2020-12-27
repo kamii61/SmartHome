@@ -22,11 +22,11 @@ const ModalRoom = (props) => {
 
   // add room
   const onSubmitForm = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // chặn sự kiện submit của browser
 
     console.log("room name", room_name);
 
-    let response = await Axios({
+    await Axios({
       method: "POST",
       url: "http://localhost:8000/rooms",
       data: { room_name: room_name },
@@ -78,39 +78,37 @@ const ModalRoom = (props) => {
             </div>
             <div className="modal-body">
               <form onSubmit={onSubmitForm}>
-                <div>
-                  <div className="form-group">
-                    <label htmlFor="ID">ID</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="room_id"
-                      disabled
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="Name">Name room</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="room_name"
-                      value={room_name}
-                      onChange={onChange}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <div className="row" style={{}}>
-                      <label htmlFor="Image" className="col-2">
-                        Image
-                      </label>
-                      <input type="file" className="col-10" name="fileDevice" />
-                    </div>
-                    <div id="image-show" />
-                  </div>
-                  <button type="submit" className="btn btn-success mr-3">
-                    Submit
-                  </button>
+                <div className="form-group">
+                  <label htmlFor="ID">ID</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="room_id"
+                    disabled
+                  />
                 </div>
+                <div className="form-group">
+                  <label htmlFor="Name">Name room</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="room_name"
+                    value={room_name}
+                    onChange={onChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <div className="row" style={{}}>
+                    <label htmlFor="Image" className="col-2">
+                      Image
+                    </label>
+                    <input type="file" className="col-10" name="fileDevice" />
+                  </div>
+                  <div id="image-show" />
+                </div>
+                <button type="submit" className="btn btn-success mr-3">
+                  Submit
+                </button>
               </form>
             </div>
           </div>
@@ -121,9 +119,9 @@ const ModalRoom = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  roomList: state.room.roomList,
-  roomRedux: state.room.roomRedux,
-  roomEdit: state.room.roomEdit,
+  roomList: state.RoomReducer.roomList,
+  roomRedux: state.RoomReducer.roomRedux,
+  roomEdit: state.RoomReducer.roomEdit,
 });
 
 export default connect(mapStateToProps)(ModalRoom);
