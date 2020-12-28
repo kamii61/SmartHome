@@ -1,59 +1,56 @@
 /* .modal-body{
     background-color: #BF238B;
 } */
-.form-signup{
-  background-color: #BF238B;
-}
-.card-signin {
+
+.card-signup {
     border: 0;
     border-radius: 2rem;
     box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
     overflow: hidden;
   }
   
-  .card-signin .card-title {
+  .card-signup .card-title {
     margin-bottom: 2rem;
     font-weight: 300;
     font-size: 1.5rem;
   }
   
-  .card-signin .card-img-left {
+  .card-signup .card-img-left {
     width: 50%;
     /* Link to your background image using in the property below! */
     background: scroll center url('https://source.unsplash.com/WEQbe2jBg40/414x512');
     background-size: cover;
   }
   
-  .card-signin .card-body {
+  .card-signup .card-body {
     padding: 2rem;
   }
   
-  .form-signin {
+  .form-signup {
     width: 100%;
   }
   
-  .form-signin {
+  .form-signup {
     font-size: 80%;
-    border-radius: 5rem;
     letter-spacing: .1rem;
     font-weight: bold;
-    /* padding: 1rem; */
+  
     transition: all 0.2s;
   }
 
-  .btn{
+  .card-signup.btn{
       border-radius: 0;
       border: none;
   }
   
-  .form-label-group {
+  .card-signup .form-label-group {
     position: relative;
     margin-bottom: 1rem;
   }
 
 
   
-  .form-label-group input {
+  .card-signup .form-label-group input {
     height: auto;
     border: none;
  
@@ -65,10 +62,10 @@
      box-shadow: none;
   }
   
-  .form-label-group>input,
+  /* .form-label-group>input,
   .form-label-group>label {
     padding: var(--input-padding-y) var(--input-padding-x);
-  }
+  } */
 
   .btn-register{
     color: white;

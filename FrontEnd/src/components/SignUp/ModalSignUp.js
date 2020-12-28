@@ -12,7 +12,7 @@ export default function ModalSignUp() {
           data-toggle="modal"
           data-target="#modelId"
         >
-          Launch
+          Sign up
         </button>
         {/* Modal */}
         <div
@@ -37,15 +37,15 @@ export default function ModalSignUp() {
 
                 <div className="row">
                   <div className="col-12 mx-auto">
-                    <div className={`card card-signin flex-row my-5`}>
+                    <div className={`card card-signup flex-row my-5`}>
                       <div className="card-img-left d-none d-md-flex">
                         {/* Background image for card set in CSS! */}
                       </div>
-                      <div className="card-body">
+                      <div className="card-body ">
                         <h5 className="card-title text-center text-bold">
                           Register
                         </h5>
-                        <form className="form-signin">
+                        <form className="form-signup">
                           <div className="form-label-group">
                             <input
                               type="text"
