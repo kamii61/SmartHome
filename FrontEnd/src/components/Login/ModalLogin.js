@@ -2,8 +2,36 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginAction } from "../../redux/Actions/ClientAction";
 import "./ModalLogin.css";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 export default function ModalSignIn() {
+  const initialValues = {
+    email: "",
+    client_password: "",
+  };
+
+  const onSubmit = (values, onSubmitProps) => {
+    console.log("value submit: ", values);
+    onSubmitProps.setSubmitting(false);
+  };
+
+  const validationSchema = Yup.object({
+    client_password: Yup.string().required("Required"),
+    email: Yup.string().required("Required").email("Invalid email format"),
+  });
+
+  const formik = useFormik({
+    initialValues,
+    onSubmit,
+    validationSchema,
+
+    // only show validate when press button submit form
+    validateOnBlur: false,
+    validateOnChange: false,
+  });
+
+  console.log(("form errors", formik.errors));
   return (
     <>
       <div>
@@ -49,31 +77,48 @@ export default function ModalSignIn() {
                               <h3 className="login-heading mb-4">
                                 Welcome back!
                               </h3>
-                              <form>
+                              <form onSubmit={formik.handleSubmit}>
+                                {/* email */}
                                 <div className="form-label-group">
                                   <input
-                                    type="email"
+                                    type="text"
                                     id="inputEmail"
                                     className="form-control"
                                     placeholder="Email address"
-                                    required
                                     autofocus
+                                    name="email"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.name}
                                   />
                                   <label htmlFor="inputEmail">
                                     Email address
                                   </label>
+                                  {formik.errors.email ? (
+                                    <p className="text text-danger">
+                                      {formik.errors.email}
+                                    </p>
+                                  ) : null}
                                 </div>
+
+                                {/* password */}
                                 <div className="form-label-group">
                                   <input
                                     type="password"
                                     id="inputPassword"
                                     className="form-control"
                                     placeholder="Password"
-                                    required
+                                    name="client_password"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.name}
                                   />
                                   <label htmlFor="inputPassword">
                                     Password
                                   </label>
+                                  {formik.errors.client_password ? (
+                                    <p className="text text-danger">
+                                      {formik.errors.client_password}
+                                    </p>
+                                  ) : null}
                                 </div>
                                 <div className="custom-control custom-checkbox mb-3">
                                   <input
