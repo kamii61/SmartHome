@@ -2,6 +2,8 @@ import React from "react";
 import "./ModalSignUp.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
+import { clientService } from "../../services";
 
 export default function ModalSignUp() {
   const initialValues = {
@@ -14,39 +16,17 @@ export default function ModalSignUp() {
   const onSubmit = (values, onSubmitProps) => {
     console.log("value submit: ", values);
     onSubmitProps.setSubmitting(false);
+    clientService
+      .signUp(values)
+      .then((res) => {
+        console.log("data signup to server", res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
-  // const validate = (values) => {
-  //   // values.client_name value.client_password values.contact values.email
-  //   // error.client_name error.client_password error.contact error.
-  //   //error.client_name = "This field is required"
-  //   let errors = {};
-  //   if (!values.client_name) {
-  //     errors.client_name = "required";
-  //   }
-
-  //   if (!values.client_password) {
-  //     errors.client_password = "required";
-  //   }
-
-  //   if (!values.contact) {
-  //     errors.contact = "required";
-  //   } else if (/[^0-9]/.test(values.contact)) {
-  //     errors.contact = "Invalid phone format";
-  //   }
-
-  //   if (!values.email) {
-  //     errors.email = "required";
-  //   } else if (
-  //     !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-  //       values.email
-  //     )
-  //   ) {
-  //     errors.email = "Invalid email format";
-  //   }
-  //   return errors;
-  // };
-
+  // validate
   const regexPhone = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
   const validationSchema = Yup.object({
     client_name: Yup.string().required("Required"),
@@ -60,7 +40,6 @@ export default function ModalSignUp() {
   const formik = useFormik({
     initialValues,
     onSubmit,
-    // validate,
     validationSchema,
 
     // only show validate when press button submit form

@@ -29,7 +29,9 @@ app.use(express.json()); //req.body
 // app.post("/", routes.index); //call for signup post
 // app.get("/profile/:id", routes.profile);
 ///////////////
-app.post("/clients", async (req, res) => {
+
+// signup
+app.post("/clients/signup", async (req, res) => {
   try {
     const { client_name, client_password, contact, email } = req.body;
     const { client_id } = req.params;
@@ -42,6 +44,26 @@ app.post("/clients", async (req, res) => {
     console.error(error.message);
   }
 });
+
+//login
+app.post("/clients/login", async (req, res) => {
+  try {
+    const { email, client_password } = req.body;
+
+    if (!email || !client_password) {
+      return res.status(400).send({ message: "Some values are missing" });
+    }
+
+    const getEmailClient = await pool.query(
+      "SELECT * FROM clients WHERE email = $1 ",
+      [email]
+    );
+    res.json(getEmailClient.rows[0]);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
 //get all
 app.get("/clients", async (req, res) => {
   try {

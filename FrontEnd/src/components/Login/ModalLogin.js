@@ -4,6 +4,8 @@ import { loginAction } from "../../redux/Actions/ClientAction";
 import "./ModalLogin.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { clientService } from "../../services";
+import { ACCESS_TOKEN, DOMAIN, USER_LOGIN } from "../../util/setting";
 
 export default function ModalSignIn() {
   const initialValues = {
@@ -14,6 +16,18 @@ export default function ModalSignIn() {
   const onSubmit = (values, onSubmitProps) => {
     console.log("value submit: ", values);
     onSubmitProps.setSubmitting(false);
+
+    clientService
+      .login(values)
+      .then((res, props) => {
+        console.log("data login to server", res.data);
+        localStorage.setItem(ACCESS_TOKEN, res.data.accessToken);
+        localStorage.setItem(USER_LOGIN, JSON.stringify(res.data));
+        props.history.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const validationSchema = Yup.object({
