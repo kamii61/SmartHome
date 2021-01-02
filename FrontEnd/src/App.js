@@ -13,6 +13,10 @@ import Footer from "./Layout/Footer/Footer";
 import React from "react";
 import { store } from "./redux/root";
 
+// socket
+// import io from "socket.io-client";
+// const myIoSocket = openSocket("http://192.168.0.131:8000");
+
 function App() {
   return (
     <Provider store={store}>
