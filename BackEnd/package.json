@@ -23,5 +23,8 @@
     "socket.io": "^3.0.4",
     "socket.io-client": "^3.0.4",
     "socketio-wildcard": "^2.0.0"
+  },
+  "devDependencies": {
+    "http-proxy-middleware": "^1.0.6"
   }
 }

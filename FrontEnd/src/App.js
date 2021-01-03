@@ -4,18 +4,12 @@ import Home from "./pages/Home";
 import Items from "./pages/Items";
 import Header from "./Layout/Header/Header";
 import About from "./pages/About";
-
 import { Provider } from "react-redux";
-
 import ModalSignUp from "./components/SignUp/ModalSignUp";
 import ModalLogin from "./components/Login/ModalLogin";
 import Footer from "./Layout/Footer/Footer";
 import React from "react";
 import { store } from "./redux/root";
-
-// socket
-// import io from "socket.io-client";
-// const myIoSocket = openSocket("http://192.168.0.131:8000");
 
 function App() {
   return (

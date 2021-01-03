@@ -22,16 +22,7 @@ var mqttClient = mqtt.connect(process.env.MQTT_BROKER);
 
 esp8266_nsp.use(middleware);
 webapp_nsp.use(middleware);
-
-server.listen(process.env.PORT);
-console.log(
-  "Server nodejs chay tai dia chi: " + ip.address() + ":" + process.env.PORT
-);
-
-app.use(express.static("node_modules/"));
-
-app.use(express.static("webapp"));
-// all environments
+//////////
 
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
@@ -40,12 +31,12 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(fileUpload());
 
-// development only
+app.use(express.static("node_modules/"));
+app.use(express.static("webapp"));
+app.use(express.json());
 
-//middle ware
+// enable cors
 app.use(cors());
-app.use(express.json()); //req.body
-//ROUTES//
 
 //create a smarthome//clients
 // app.get("/", routes.index); //call for main index page
@@ -271,7 +262,7 @@ app.delete("/rooms/:id", async (req, res) => {
   }
 });
 
-//
+//socket + mqtt
 
 function ParseJson(jsondata) {
   try {
@@ -330,3 +321,6 @@ webapp_nsp.on("connection", function (socket) {
     mqttClient.publish("LED", JSON.stringify(msg));
   });
 });
+
+server.listen(process.env.PORT);
+console.log("Server nodejs chay tai dia chi: " + process.env.PORT);

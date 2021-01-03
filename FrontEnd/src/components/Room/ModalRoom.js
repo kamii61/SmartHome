@@ -30,7 +30,7 @@ const ModalRoom = (props) => {
 
     await Axios({
       method: "POST",
-      url: "http://localhost:8000/rooms",
+      url: "http://localhost:8080/rooms",
       data: { room_name: room_name },
     })
       .then((response) => {

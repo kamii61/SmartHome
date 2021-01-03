@@ -39,7 +39,7 @@ class RoomList extends Component {
   getRoomList = async () => {
     await Axios({
       method: "GET",
-      url: "http://localhost:8000/rooms",
+      url: "http://localhost:8080/rooms",
     })
       .then((res) => {
         this.props.dispatch({

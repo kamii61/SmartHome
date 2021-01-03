@@ -8,7 +8,7 @@ const ModalRoom = () => {
     e.preventDefault();
     try {
       const body = { room_name };
-      const response = await fetch("http://localhost:8000/rooms", {
+      const response = await fetch("http://localhost:8080/rooms", {
         method: "Post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -20,7 +20,7 @@ const ModalRoom = () => {
 
     // let response = await Axios({
     //   method: "Post",
-    //   url: "http://localhost:8000/rooms",
+    //   url: "http://localhost:8080/rooms",
     //   room_name,
     // })
     //   .then((response) => console.log(response.data))
