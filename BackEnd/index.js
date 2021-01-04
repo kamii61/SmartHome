@@ -14,7 +14,8 @@ var socketio = require("socket.io");
 var ip = require("ip");
 var server = http.Server(app);
 var io = socketio(server);
-var webapp_nsp = io.of("/webapp");
+
+var webapp_nsp = io.of("/Room");
 var esp8266_nsp = io.of("/esp8266");
 var middleware = require("socketio-wildcard")();
 var mqtt = require("mqtt");
@@ -32,7 +33,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(fileUpload());
 
 app.use(express.static("node_modules/"));
-app.use(express.static("webapp"));
+app.use(express.static("/FrontEnd/src/components/Room"));
 app.use(express.json());
 
 // enable cors

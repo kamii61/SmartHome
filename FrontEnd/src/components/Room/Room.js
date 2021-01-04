@@ -5,24 +5,24 @@ import ModalEditRoom from "./ModalEditRoom";
 
 // socket
 import { io } from "socket.io-client";
-const socket = io.connect("http://localhost:8080", {
+const socket = io.connect("http://localhost:8080/Room", {
   transports: ["websocket", "polling", "flashsocket"],
 });
 
 function Room(props) {
   let { room_id, room_name } = props.room;
-  const [temp, setTemp] = useState({ topic: "TC", message: "20" });
-  const [humi, setHumi] = useState({ topic: "HUM", message: "80" });
+  const [temp, setTemp] = useState({ topic: "TC", message: 20 });
+  const [humi, setHumi] = useState({ topic: "HUM", message: 80 });
 
   useEffect(() => {
     socket.on("TC", (msg) => {
-      console.log("msg TC", msg);
-      setTemp((temp.message = msg));
+      // console.log("msg TC", msg);
+      setTemp({ ...temp }, (temp.message = msg));
     });
 
     socket.on("HUM", (msg) => {
       // console.log("msg HUM", msg);
-      setHumi((humi.message = msg));
+      setHumi({ ...humi }, (humi.message = msg));
     });
 
     socket.on("connect", () => {
