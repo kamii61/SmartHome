@@ -2,11 +2,39 @@ import React, { Component, useState, useEffect } from "react";
 import "./Device.css";
 import ModalDevice from "./ModalDevice";
 // socket
-// import io from "socket.io-client";
-// const socket = io.connect("http://192.168.10.111:8000");
+import { io } from "socket.io-client";
+const socket = io.connect("http://localhost:8080/Room", {
+  transports: ["websocket", "polling", "flashsocket"],
+});
 
 export default function Device() {
-  const [led, setLed] = useState({ msg: [0, 0] });
+  const [ledStatus, setLedStatus] = useState(0);
+
+  useEffect(() => {
+    socket.on("connect", () => {
+      console.log("socket connected");
+    });
+  }, []);
+
+  // onChange input
+  const handleChange = (e) => {
+    let { checked } = e.target;
+    setLedStatus(checked);
+
+    if (!checked) {
+      setLedStatus(1);
+      console.log("ledStatus", ledStatus);
+    } else {
+      setLedStatus(0);
+      console.log("ledStatus", ledStatus);
+    }
+
+    var json = {
+      led: ledStatus,
+    };
+    console.log("json", json);
+    socket.emit("LED", json);
+  };
 
   return (
     <div className="card ">
@@ -34,7 +62,12 @@ export default function Device() {
         <p className="card-title">Open</p>
 
         <label className="switch">
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            name="led"
+            value={ledStatus}
+            onChange={handleChange}
+          />
           <span className="slider round" />
         </label>
       </div>

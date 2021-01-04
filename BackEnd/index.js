@@ -319,6 +319,7 @@ webapp_nsp.on("connection", function (socket) {
   });
 
   socket.on("LED", function (msg) {
+    console.log("led", msg);
     mqttClient.publish("LED", JSON.stringify(msg));
   });
 });
