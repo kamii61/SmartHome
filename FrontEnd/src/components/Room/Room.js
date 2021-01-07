@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { connect } from "react-redux";
 import ModalEditRoom from "./ModalEditRoom";
+import { roomService } from "../../services/";
+import { DOMAIN } from "../../util/setting";
 
 // socket
 import { io } from "socket.io-client";
-const socket = io.connect("http://localhost:8080/Room", {
+const socket = io.connect(`${DOMAIN}/Room`, {
   transports: ["websocket", "polling", "flashsocket"],
 });
 
@@ -32,10 +34,8 @@ function Room(props) {
 
   // Delete room
   const deleteRoom = (room_id) => {
-    Axios({
-      method: "DELETE",
-      url: `http://localhost:8080/rooms/${room_id}`,
-    })
+    roomService
+      .deleteRoom(room_id)
       .then((res) => {
         // console.log(res.data);
         props.dispatch({
@@ -52,10 +52,8 @@ function Room(props) {
   // Edit room
   // the first: get data by id
   const getRoomById = (room_id) => {
-    Axios({
-      method: "GET",
-      url: `http://localhost:8080/rooms/${room_id}`,
-    })
+    roomService
+      .getRoomByID(room_id)
       .then((res) => {
         //console.log(res.data);
         props.dispatch({
@@ -84,7 +82,11 @@ function Room(props) {
 
           {/* btn edit room */}
 
-          <ModalEditRoom getRoomById={getRoomById} room_id={room_id} />
+          <ModalEditRoom
+            getRoomById={getRoomById}
+            room_id={room_id}
+            getRoomList={props.getRoomList}
+          />
 
           {/* btn remove room */}
           <button

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { loginAction } from "../../redux/Actions/ClientAction";
 import "./ModalLogin.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";

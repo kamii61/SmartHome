@@ -1,9 +1,11 @@
 import axios from "axios";
+import { DOMAIN, ACCESS_TOKEN } from "../util/setting";
+
 class ClientService {
   signUp = async (data) => {
     return await axios({
       method: "POST",
-      url: "http://localhost:8000/clients/signup",
+      url: `${DOMAIN}/clients/signup`,
       data,
     });
   };
@@ -11,7 +13,7 @@ class ClientService {
   login = async (data) => {
     return await axios({
       method: "POST",
-      url: "http://localhost:8000/clients/login",
+      url: `${DOMAIN}/clients/login`,
       data,
     });
   };

@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import Axios from "axios";
+import { roomService } from "../../services";
 
 const ModalEditRoom = (props) => {
   let [selectedRoom, setSelectedRoom] = useState("");
@@ -30,13 +31,10 @@ const ModalEditRoom = (props) => {
 
     const room_id = props.roomRedux.values.room_id;
 
-    await Axios({
-      method: "PUT",
-      url: `http://localhost:8000/rooms/${room_id}`,
-      data: {
+    roomService
+      .editRoom(room_id, {
         room_name: selectedRoom,
-      },
-    })
+      })
       .then((response) => {
         props.dispatch({
           type: "UPDATE_ROOM",

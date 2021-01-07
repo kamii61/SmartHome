@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { roomService } from "../../services/";
 
 const ModalRoom = (props) => {
   const [room_name, setName] = useState("");
@@ -28,11 +29,8 @@ const ModalRoom = (props) => {
 
     console.log("room name", room_name);
 
-    await Axios({
-      method: "POST",
-      url: "http://localhost:8080/rooms",
-      data: { room_name: room_name },
-    })
+    roomService
+      .addRoom({ room_name: room_name })
       .then((response) => {
         console.log(response.data);
         props.dispatch({

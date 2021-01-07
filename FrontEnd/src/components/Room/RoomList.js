@@ -4,6 +4,7 @@ import ModalUser from "../ModalUser";
 import Axios from "axios";
 import { connect } from "react-redux";
 import Room from "./Room";
+import { roomService } from "../../services/";
 
 class RoomList extends Component {
   //   render roomList from data
@@ -36,11 +37,9 @@ class RoomList extends Component {
     );
   }
 
-  getRoomList = async () => {
-    await Axios({
-      method: "GET",
-      url: "http://localhost:8080/rooms",
-    })
+  getRoomList = () => {
+    roomService
+      .getRoom()
       .then((res) => {
         this.props.dispatch({
           type: "FETCH_ROOM",
