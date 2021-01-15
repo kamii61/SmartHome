@@ -1,6 +1,6 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Device.css";
-import ModalDevice from "./ModalDevice";
+
 // socket
 import { io } from "socket.io-client";
 const socket = io.connect("http://localhost:8080/Room", {
@@ -44,6 +44,7 @@ export default function Device() {
           src="http://picsum.photos/200/200"
           width="200"
           height="300"
+          alt="img"
         />
 
         <button

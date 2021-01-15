@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "install",
+			"path": "Broker/",
+			"problemMatcher": [],
+			"label": "npm: install - Broker",
+			"detail": "install dependencies from package"
+		}
+	]
+}

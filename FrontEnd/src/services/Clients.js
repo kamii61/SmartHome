@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DOMAIN, ACCESS_TOKEN } from "../util/setting";
+import { DOMAIN } from "../util/setting";
 
 class ClientService {
   signUp = async (data) => {

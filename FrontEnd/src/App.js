@@ -5,8 +5,8 @@ import Items from "./pages/Items";
 import Header from "./Layout/Header/Header";
 import About from "./pages/About";
 import { Provider } from "react-redux";
-import ModalSignUp from "./components/SignUp/ModalSignUp";
-import ModalLogin from "./components/Login/ModalLogin";
+import SignUp from "./components/SignUp/SignUp";
+import Login from "./components/Login/Login";
 import Footer from "./Layout/Footer/Footer";
 import React from "react";
 import { store } from "./redux/root";
@@ -24,8 +24,8 @@ function App() {
             <Route path="/" exact component={Home} />
             <Route path="/item" exact component={Items} />
             <Route path="/about" exact component={About} />
-            <Route path="/signup" exact component={ModalSignUp} />
-            <Route path="/login" exact component={ModalLogin} />
+            <Route path="/signup" exact component={SignUp} />
+            <Route path="/login" exact component={Login} />
           </Switch>
 
           {/* Footer */}

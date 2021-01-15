@@ -1,37 +1,45 @@
 import React, { Component } from "react";
 import Device from "./Device";
 import ModalDevice from "./ModalDevice";
+import { itemService } from "../../services/";
+import { connect } from "react-redux";
 
-export default class DeviceList extends Component {
+class DeviceList extends Component {
+  //get items
+  getListItem = () => {
+    itemService
+      .getItems()
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   render() {
     return (
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <button
-              type="button"
-              className="btn btn-primary btn-lg mr-2"
-              data-toggle="modal"
-              data-target="#modelDevice"
-            >
-              <i class="fa fa-plus-circle">
-                <ModalDevice />
-              </i>
-            </button>
+            <ModalDevice />
             <span>ADD DEVICE</span>
           </div>
         </div>
         {/* device list */}
-
-        <div className="row mt-3">
-          <div className="col-6">
-            <Device />
-          </div>
-          <div className="col-6">
-            <Device />
-          </div>
-        </div>
+        <div className="row"></div>
       </div>
     );
   }
+  componentDidMount() {
+    this.getListItem();
+    console.log("item list redux", this.props.itemList);
+  }
 }
+
+// get data from redux
+const mapStateToProps = (state) => ({
+  itemList: state.ItemReducer.itemList,
+});
+
+export default connect(mapStateToProps)(DeviceList);

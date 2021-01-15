@@ -14,6 +14,7 @@ export default class Footer extends Component {
                 alt="smart-home"
                 width="200"
                 height="80"
+                alt="img"
               />
             </div>
             <div className="col-4 footer-nav">

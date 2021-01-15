@@ -5,6 +5,7 @@
 #define DHTTYPE DHT11
 #define DHTPIN D4
 #define Led1 D3
+  
 
 DHT dht(DHTPIN, DHTTYPE);
 const char *ssid = "OPPO F9";
@@ -118,3 +119,4 @@ void callback(char* topic, byte* payload, unsigned int lenght)
     }
 
 }
+

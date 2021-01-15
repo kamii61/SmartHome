@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ModalRoom from "./ModalRoom";
 import ModalUser from "../ModalUser";
-import Axios from "axios";
 import { connect } from "react-redux";
 import Room from "./Room";
 import { roomService } from "../../services/";

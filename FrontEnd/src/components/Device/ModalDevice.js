@@ -3,16 +3,16 @@ import React, { Component } from "react";
 export default class ModalDevice extends Component {
   render() {
     return (
-      <div>
+      <>
         {/* Button trigger modal */}
-        {/* <button
+        <button
           type="button"
-          className="btn btn-primary btn-lg"
+          className="btn btn-primary btn-lg mr-3"
           data-toggle="modal"
           data-target="#modelDevice"
         >
-          <i class="fa fa-edit"></i>
-        </button> */}
+          <i class="fa fa-plus-circle"></i>
+        </button>
         {/* Modal */}
         <div
           className="modal fade"
@@ -83,7 +83,7 @@ export default class ModalDevice extends Component {
             </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }

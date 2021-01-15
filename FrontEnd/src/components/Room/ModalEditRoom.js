@@ -1,6 +1,5 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import Axios from "axios";
 import { roomService } from "../../services";
 
 const ModalEditRoom = (props) => {

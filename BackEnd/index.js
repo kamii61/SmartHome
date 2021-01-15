@@ -2,6 +2,7 @@ var express = require("express");
 var app = express();
 var cors = require("cors");
 var pool = require("./db");
+var fs = require("fs");
 /////////
 var routes = require("./routes");
 var path = require("path");
@@ -19,13 +20,16 @@ var webapp_nsp = io.of("/Room");
 var esp8266_nsp = io.of("/esp8266");
 var middleware = require("socketio-wildcard")();
 var mqtt = require("mqtt");
+const { response } = require("express");
 var mqttClient = mqtt.connect(process.env.MQTT_BROKER);
 
 esp8266_nsp.use(middleware);
 webapp_nsp.use(middleware);
 //////////
 
-app.set("views", __dirname + "/views");
+// app.set("views", __dirname + "/views");
+// app.set("view engine", "ejs");
+app.set("uploads", __dirname + "/uploads");
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -35,12 +39,18 @@ app.use(fileUpload());
 app.use(express.static("node_modules/"));
 app.use(express.static("/FrontEnd/src/components/Room"));
 app.use(express.json());
+app.use(express.static("./uploads/"));
 
 // enable cors
 app.use(cors());
 
 //create a smarthome//clients
-// app.get("/", routes.index); //call for main index page
+app.get("/upload", (res, req) => {
+  res.writeHead(200, { "content-type": "text/php" });
+
+  const php = fs.readFileSync("./upload.php");
+  res.readableEnded(php);
+}); //call for main index page
 // app.post("/", routes.index); //call for signup post
 // app.get("/profile/:id", routes.profile);
 ///////////////
@@ -278,6 +288,12 @@ mqttClient.on("connect", () => {
     if (!error) {
     }
   });
+
+  mqttClient.subscribe("esp32/+", (error) => {
+    if (!error) {
+      console.log(error);
+    }
+  });
 });
 
 mqttClient.on("message", function (topic, message) {
@@ -289,6 +305,8 @@ mqttClient.on("message", function (topic, message) {
     case "/dht/hum":
       webapp_nsp.emit("HUM", message.toString());
       break;
+    case "esp32/pic":
+      webapp_nsp.emit("image", message);
     default:
       break;
   }
@@ -325,4 +343,6 @@ webapp_nsp.on("connection", function (socket) {
 });
 
 server.listen(process.env.PORT);
-console.log("Server nodejs chay tai dia chi: " + process.env.PORT);
+console.log(
+  "Server nodejs chay tai dia chi: " + ip.address() + ":" + process.env.PORT
+);
