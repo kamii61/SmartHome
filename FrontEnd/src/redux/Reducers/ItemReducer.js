@@ -9,6 +9,11 @@ let defaultState = {
 export const ItemReducer = (state = defaultState, action) => {
   switch (action.type) {
     // Get data from server and load data to UI
+    case "FETCH_ITEM": {
+      console.log(action.payload);
+      state.itemList = action.payload;
+      return { ...state };
+    }
 
     default:
       return state;

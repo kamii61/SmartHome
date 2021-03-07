@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import ModalEditRoom from "./ModalEditRoom";
 import { roomService } from "../../services/";
 import { DOMAIN } from "../../util/setting";
-import { bytesToBase64 } from "./ByteToBase64";
 
 // socket
 import { io } from "socket.io-client";
@@ -15,10 +14,6 @@ function Room(props) {
   let { room_id, room_name } = props.room;
   const [temp, setTemp] = useState({ topic: "TC", message: 20 });
   const [humi, setHumi] = useState({ topic: "HUM", message: 80 });
-  const [img, setImg] = useState({
-    topic: "image",
-    message: "http://picsum.photos/200/200",
-  });
 
   useEffect(() => {
     socket.on("TC", (msg) => {
@@ -29,22 +24,6 @@ function Room(props) {
     socket.on("HUM", (msg) => {
       // console.log("msg HUM", msg);
       setHumi({ ...humi }, (humi.message = msg));
-    });
-
-    socket.on("image", (msg) => {
-      // b1: get unit8Array of arrayBuffer
-      var uint8View = new Uint8Array(msg);
-      //console.log(uint8View);
-
-      // b2: covert unit8Array to base64
-      var unit8ToBase64 = bytesToBase64(uint8View);
-      //console.log("base64", unit8ToBase64);
-
-      setImg(
-        { ...img },
-        (img.message = "data:image/jpeg;base64," + unit8ToBase64)
-      );
-      console.log("arrBuff", img.message);
     });
 
     socket.on("connect", () => {
@@ -94,7 +73,7 @@ function Room(props) {
       <div className="card mt-4">
         <div className="card-header">
           <h3 className="card-title ">{room_name}</h3>
-          <img src={img.message} />
+
           <img
             className="card-img-top"
             src="http://picsum.photos/200/200"

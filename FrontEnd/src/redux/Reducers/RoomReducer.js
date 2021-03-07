@@ -10,7 +10,6 @@ export const RoomReducer = (state = defaultState, action) => {
   switch (action.type) {
     // Get data from server and load data to UI
     case "FETCH_ROOM": {
-      console.log(action.payload);
       state.roomList = action.payload;
       return { ...state };
     }
@@ -29,14 +28,13 @@ export const RoomReducer = (state = defaultState, action) => {
       let roomUpdate = [...state.roomList];
 
       roomUpdate = roomUpdate.filter((room) => room.room_id !== action.room_id);
-      console.log("room update", roomUpdate);
-      // cap nhat lai state roomList
+      // update state roomList
       state.roomList = roomUpdate;
       return { ...state };
     }
 
     case "GET_ROOM_ID": {
-      //cap nhat la state
+      //update state
       state.roomEdit = { ...action.payload };
 
       let newRoomRedux = { ...state.roomRedux };

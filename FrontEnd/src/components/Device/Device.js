@@ -7,7 +7,8 @@ const socket = io.connect("http://localhost:8080/Room", {
   transports: ["websocket", "polling", "flashsocket"],
 });
 
-export default function Device() {
+export default function Device(props) {
+  //let { item_name } = this.props.item;
   const [ledStatus, setLedStatus] = useState(0);
 
   useEffect(() => {
@@ -37,7 +38,7 @@ export default function Device() {
   };
 
   return (
-    <div className="card ">
+    <div className="card mr-5 mt-3">
       <div className="card-title">
         <img
           className="card-img-top"
@@ -60,7 +61,7 @@ export default function Device() {
         </button>
       </div>
       <div className="card-body">
-        <p className="card-title">Open</p>
+        <p className="card-title">open</p>
 
         <label className="switch">
           <input

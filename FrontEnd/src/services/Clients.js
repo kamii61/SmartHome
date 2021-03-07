@@ -17,6 +17,13 @@ class ClientService {
       data,
     });
   };
+
+  getClientList = () => {
+    return axios({
+      method: "GET",
+      url: `${DOMAIN}/clients`,
+    });
+  };
 }
 
 export default ClientService;

@@ -4,12 +4,15 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { clientService } from "../../services";
 import { ACCESS_TOKEN, USER_LOGIN } from "../../util/setting";
+import { useHistory } from "react-router-dom";
 
 export default function Login() {
   const initialValues = {
     email: "",
     client_password: "",
   };
+
+  let history = useHistory();
 
   const onSubmit = (values, onSubmitProps) => {
     console.log("value submit: ", values);
@@ -18,11 +21,14 @@ export default function Login() {
     clientService
       .login(values)
       .then((res) => {
-        console.log("data login to server", res.data);
+        console.log("success login", res.data);
         localStorage.setItem(ACCESS_TOKEN, res.data.accessToken);
         localStorage.setItem(USER_LOGIN, JSON.stringify(res.data));
+
+        history.push("/item");
       })
       .catch((err) => {
+        alert("sai r má :)");
         console.log(err);
       });
   };
@@ -43,6 +49,7 @@ export default function Login() {
   });
 
   console.log(("form errors", formik.errors));
+
   return (
     <>
       <div className="modal-body card-login">
@@ -143,7 +150,6 @@ export default function Login() {
           </div>
         </div>
       </div>
-      {/* end */}
     </>
   );
 }

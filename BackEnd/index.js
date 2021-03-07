@@ -289,7 +289,7 @@ mqttClient.on("connect", () => {
     }
   });
 
-  mqttClient.subscribe("esp32/+", (error) => {
+  mqttClient.subscribe("/esp32/+", (error) => {
     if (!error) {
       console.log(error);
     }
@@ -305,8 +305,14 @@ mqttClient.on("message", function (topic, message) {
     case "/dht/hum":
       webapp_nsp.emit("HUM", message.toString());
       break;
-    case "esp32/pic":
-      webapp_nsp.emit("image", message);
+    case "/esp32/capture": {
+      if (message.toString() == "esp32-8860f0bd9e7c") {
+        return 0;
+      } else {
+        webapp_nsp.emit("image", message);
+      }
+    }
+
     default:
       break;
   }
