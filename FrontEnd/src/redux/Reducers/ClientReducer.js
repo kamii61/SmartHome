@@ -13,8 +13,8 @@ export const ClientReducer = (state = defaultState, action) => {
   switch (action.type) {
     // Get data from server and load data to UI
     case "FETCH_CLIENT": {
-      state.clientList = action.payload;
-      console.log("FETCH_CLIENT", action.payload);
+      state.clientList = [...action.payload];
+      console.log("FETCH_CLIENT", state.clientList);
       return { ...state };
     }
 

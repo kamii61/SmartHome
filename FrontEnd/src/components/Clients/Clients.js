@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import { clientService } from "../../services";
 import { connect } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { ClientReducer } from "../../redux/Reducers/ClientReducer";
 
 function Clients(props) {
+  // useSelector thay cho mapStateToProps
+  const clientList = useSelector((state) => state.ClientReducer.clientList);
   const dispatch = useDispatch();
   const getClientList = () => {
-    console.log("client", props.clientList);
-
     clientService
       .getClientList()
       .then((res) => {
@@ -24,16 +25,29 @@ function Clients(props) {
     getClientList();
   }, []);
 
-  // const renderClient = () => {
-  //   return props.clientList?.map((client, index) => {
-  //     return (
-  //       <tr key={index}>
-  //         <td>{client.client_id}</td>
-  //         <td>{client.client_name}</td>
-  //       </tr>
-  //     );
-  //   });
-  // };
+  const renderClient = () => {
+    return clientList?.map((client, index) => {
+      return (
+        <tr key={index}>
+          <td>{client.client_id}</td>
+          <td>{client.client_name}</td>
+          <td>{client.contact}</td>
+          <td>{client.email}</td>
+          <td>{client.client_image}</td>
+          <td>
+            <button className="btn btn-primary">
+              <i class="fas fa-user-edit"></i>
+            </button>
+          </td>
+          <td>
+            <button className="btn btn-danger">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </td>
+        </tr>
+      );
+    });
+  };
 
   return (
     <>
@@ -41,11 +55,14 @@ function Clients(props) {
         <thead>
           <tr>
             <th>ID</th>
-            <th>name</th>
+            <th>Name</th>
+            <th>Contact</th>
+            <th>Email</th>
+            <th>Avatar</th>
           </tr>
         </thead>
 
-        {/* <tbody>{renderClient()}</tbody> */}
+        <tbody>{renderClient()}</tbody>
       </table>
     </>
   );
