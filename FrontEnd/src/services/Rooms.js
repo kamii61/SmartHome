@@ -1,11 +1,11 @@
-import axios from "axios";
-import { DOMAIN } from "../util/setting";
+import axios from 'axios';
+import { DOMAIN } from '../util/setting';
 
 class RoomService {
   //get all rooms
   getRoom = async () => {
     return await axios({
-      method: "GET",
+      method: 'GET',
       url: `${DOMAIN}/rooms`,
     });
   };
@@ -13,7 +13,7 @@ class RoomService {
   // get room id
   getRoomByID = async (room_id) => {
     return await axios({
-      method: "GET",
+      method: 'GET',
       url: `${DOMAIN}/rooms/${room_id}`,
     });
   };
@@ -21,7 +21,7 @@ class RoomService {
   //delete room
   deleteRoom = async (room_id) => {
     return await axios({
-      method: "DELETE",
+      method: 'DELETE',
       url: `${DOMAIN}/rooms/${room_id}`,
     });
   };
@@ -29,16 +29,19 @@ class RoomService {
   //add room
   addRoom = async (data) => {
     return await axios({
-      method: "POST",
+      method: 'POST',
       url: `${DOMAIN}/rooms`,
       data,
+      onUploadProgress: (progressEvent) => {
+        console.log(progressEvent.loaded / progressEvent.total);
+      },
     });
   };
 
   //edit room
   editRoom = async (room_id, data) => {
     return await axios({
-      method: "PUT",
+      method: 'PUT',
       url: `${DOMAIN}/rooms/${room_id}`,
       data,
     });

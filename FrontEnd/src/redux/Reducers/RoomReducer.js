@@ -1,5 +1,5 @@
 let defaultState = {
-  roomList: [{ room_name: "living room" }, { room_name: "bed room" }],
+  roomList: [],
   roomEdit: [],
   roomRedux: {
     values: {},
@@ -9,22 +9,22 @@ let defaultState = {
 export const RoomReducer = (state = defaultState, action) => {
   switch (action.type) {
     // Get data from server and load data to UI
-    case "FETCH_ROOM": {
+    case 'FETCH_ROOM': {
       state.roomList = action.payload;
       return { ...state };
     }
 
-    case "SET_ROOM_REDUX": {
+    case 'SET_ROOM_REDUX': {
       state.roomRedux = action.roomRedux;
       return { ...state };
     }
 
-    case "ADD_ROOM": {
+    case 'ADD_ROOM': {
       const roomListUpdate = [...state.roomList, action.payload];
       return { roomList: roomListUpdate, ...state };
     }
 
-    case "DELETE_ROOM": {
+    case 'DELETE_ROOM': {
       let roomUpdate = [...state.roomList];
 
       roomUpdate = roomUpdate.filter((room) => room.room_id !== action.room_id);
@@ -33,7 +33,7 @@ export const RoomReducer = (state = defaultState, action) => {
       return { ...state };
     }
 
-    case "GET_ROOM_ID": {
+    case 'GET_ROOM_ID': {
       //update state
       state.roomEdit = { ...action.payload };
 
@@ -43,8 +43,20 @@ export const RoomReducer = (state = defaultState, action) => {
       return { ...state, roomRedux: newRoomRedux };
     }
 
-    case "UPDATE_ROOM": {
-      console.log("update room", action.payload);
+    case 'UPDATE_ROOM': {
+      const roomListUpdate = [...state.roomList];
+      let roomUpdate = roomListUpdate.find((r) => {
+        return r.room_id === state.roomRedux.values.room_id;
+      });
+
+      if (roomUpdate) {
+        roomUpdate.room_id = state.roomRedux.values.room_id;
+        roomUpdate.room_name = state.roomRedux.values.room_name;
+        roomUpdate.room_image = state.roomRedux.values.room_image;
+      }
+
+      state.roomList = roomListUpdate;
+
       return { ...state };
     }
     default:

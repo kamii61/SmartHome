@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import ModalRoom from "./ModalRoom";
-import ModalUser from "../ModalUser";
-import { connect } from "react-redux";
-import Room from "./Room";
-import { roomService } from "../../services/";
+import React, { Component } from 'react';
+import ModalRoom from './ModalRoom';
+import ModalUser from '../ModalUser';
+import { connect } from 'react-redux';
+import Room from './Room';
+import { roomService } from '../../services/';
 
 class RoomList extends Component {
   //   render roomList from data
@@ -16,9 +16,9 @@ class RoomList extends Component {
   render() {
     return (
       <>
-        <div className="items__info row">
-          <div className="col-12">
-            <ModalUser style={{ display: "inline" }} />
+        <div className='items__info row'>
+          <div className='col-12'>
+            <ModalUser style={{ display: 'inline' }} />
 
             <span>Nguyen Van A</span>
           </div>
@@ -27,8 +27,8 @@ class RoomList extends Component {
         {/* Room */}
         {this.renderRoom()}
 
-        <div className="row mt-3">
-          <div className="col-12">
+        <div className='row mt-3'>
+          <div className='col-12'>
             <ModalRoom getRoomList={this.getRoomList} />
           </div>
         </div>
@@ -41,12 +41,12 @@ class RoomList extends Component {
       .getRoom()
       .then((res) => {
         this.props.dispatch({
-          type: "FETCH_ROOM",
+          type: 'FETCH_ROOM',
           payload: res.data,
         });
       })
       .catch((err) => {
-        console.log("err get room list", err);
+        console.log(err);
       });
   };
 

@@ -19,13 +19,14 @@
     "express-fileupload": "^1.2.0",
     "fs": "0.0.1-security",
     "ip": "^1.1.5",
-    "mqtt": "^4.2.6",
+    "mqtt": "^4.2.8",
     "pg": "^8.5.1",
     "socket.io": "^3.0.4",
     "socket.io-client": "^3.0.4",
     "socketio-wildcard": "^2.0.0"
   },
   "devDependencies": {
-    "http-proxy-middleware": "^1.0.6"
+    "http-proxy-middleware": "^1.0.6",
+    "nodemon": "^2.0.7"
   }
 }
