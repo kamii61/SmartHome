@@ -97,7 +97,7 @@ export default class Header extends Component {
                 this.showHideSideBar();
               }}
             >
-              <i class='fas fa-stream'></i>
+              <i className='fas fa-stream' />
             </button>
             <div className='navSecond' style={{ display: this.state.display }}>
               <button
@@ -106,35 +106,34 @@ export default class Header extends Component {
                   this.showHideSideBar();
                 }}
               >
-                <i class='fas fa-stream'></i>
+                <i className='fas fa-stream' />
               </button>
-              <div className='navSecond__info pt-2'>
-                <ul class='nav justify-content-center'>
-                  <li class='nav-item'>
-                    <a class='nav-link text-white' href='#'>
-                      <i class='fab fa-facebook-messenger text-white'></i>
+              <div classname='navSecond__info pt-2'>
+                <ul className='nav justify-content-center'>
+                  <li className='nav-item'>
+                    <a className='nav-link text-white' href='#'>
+                      <i className='fab fa-facebook-messenger text-white' />
                     </a>
                   </li>
-                  <li class='nav-item'>
-                    <a class='nav-link text-white' href='#'>
-                      <i class='fa fa-map-marker-alt '></i>
+                  <li className='nav-item'>
+                    <a className='nav-link text-white' href='#'>
+                      <i className='fa fa-map-marker-alt ' />
                     </a>
                   </li>
-                  <li class='nav-item'>
-                    <a class='nav-link disabled text-white' href='#'>
-                      <i class='fa fa-user'></i>
+                  <li className='nav-item'>
+                    <a className='nav-link disabled text-white' href='#'>
+                      <i className='fa fa-user' />
                     </a>
                   </li>
-                  <li class='nav-item'>
-                    <a class='nav-link disabled text-white' href='#'>
-                      <i class='fa fa-search'></i>
+                  <li className='nav-item'>
+                    <a className='nav-link disabled text-white' href='#'>
+                      <i className='fa fa-search' />
                     </a>
                   </li>
                 </ul>
-
                 <div>
-                  <a class='nav-link disabled text-white' href='#'>
-                    <i class='fa fa-share-alt'></i>
+                  <a className='nav-link disabled text-white' href='#'>
+                    <i className='fa fa-share-alt' />
                   </a>
                 </div>
               </div>

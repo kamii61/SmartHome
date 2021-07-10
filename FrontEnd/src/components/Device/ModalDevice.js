@@ -62,7 +62,7 @@ const Modalitem = (props) => {
         data-toggle='modal'
         data-target='#modelItem'
       >
-        <i class='fa fa-plus'></i>
+        <i className='fa fa-plus'></i>
       </button>
       {/* Modal */}
       <div

@@ -9,6 +9,13 @@ class ItemService {
     });
   };
 
+  getItemsStatus = async () => {
+    return await axios({
+      method: 'GET',
+      url: `${DOMAIN}/items/status`,
+    });
+  };
+
   // get item id
   getItemByID = async (item_id) => {
     return await axios({

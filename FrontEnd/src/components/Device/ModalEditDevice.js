@@ -61,7 +61,7 @@ const ModalEditDevice = (props) => {
           props.getItemById(props.item_id);
         }}
       >
-        <i class='fa fa-edit'></i>
+        <i className='fa fa-edit'></i>
       </button>
 
       <div

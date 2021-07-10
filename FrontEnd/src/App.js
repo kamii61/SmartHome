@@ -2,6 +2,11 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import './App.css';
+import ChartGas from './components/Chart/ChartGas';
+import ChartHum from './components/Chart/ChartHum';
+import ChartLDR from './components/Chart/ChartLDR';
+import ChartPir from './components/Chart/ChartPir';
+import ChartTemp from './components/Chart/ChartTemp';
 import Clients from './components/Clients/Clients';
 import DeviceList from './components/Device/DeviceList';
 import Login from './components/Login/Login';
@@ -11,6 +16,7 @@ import Admin from './Layout/Admin/Admin';
 import HomeTemplate from './Layout/HomeTemplate/HomeTemplate';
 import LoginTemplate from './Layout/LoginTemplate/LoginTemplate';
 import About from './pages/About';
+import Camera from './pages/Camera';
 import Home from './pages/Home';
 import Items from './pages/Items';
 import { store } from './redux/root';
@@ -31,6 +37,12 @@ function App() {
             <Admin path='/admin/client' Component={Clients} />
             <Admin path='/admin/room' Component={RoomList} />
             <Admin path='/admin/item' Component={DeviceList} />
+            <Admin path='/admin/chart/temp' Component={ChartTemp} />
+            <Admin path='/admin/chart/hum' Component={ChartHum} />
+            <Admin path='/admin/chart/gas' Component={ChartGas} />
+            <Admin path='/admin/chart/pir' Component={ChartPir} />
+            <Admin path='/admin/chart/ldr' Component={ChartLDR} />
+            <Admin path='/admin/camera' Component={Camera} />
           </Switch>
         </Router>
       </div>
@@ -39,94 +51,3 @@ function App() {
 }
 
 export default App;
-
-// export function PrivateRoute({ component: Component, authenticated, ...rest }) {
-//   return (
-//     <Route
-//       {...rest}
-//       render={(props) =>
-//         authenticated === true ? (
-//           <Component {...props} />
-//         ) : (
-//           <Redirect
-//             to={{ pathname: '/login', state: { from: props.location } }}
-//           />
-//         )
-//       }
-//     />
-//   );
-// }
-
-// export function PublicRoute({ component: Component, authenticated, ...rest }) {
-//   return (
-//     <Route
-//       {...rest}
-//       render={(props) =>
-//         authenticated === false ? (
-//           <Component {...props} />
-//         ) : (
-//           <Redirect to='/admin/item' />
-//         )
-//       }
-//     />
-//   );
-// }
-
-// class App extends Component {
-//   constructor() {
-//     super();
-//     this.state = {
-//       authenticated: false,
-//       loading: true,
-//     };
-//   }
-
-//   componentDidMount() {
-//     auth().onAuthStateChanged((user) => {
-//       if (user) {
-//         this.setState({
-//           authenticated: true,
-//           loading: false,
-//         });
-//       } else {
-//         this.setState({
-//           authenticated: false,
-//           loading: false,
-//         });
-//       }
-//     });
-//   }
-
-//   render() {
-//     return this.state.loading === true ? (
-//       <div className='spinner-border text-success' role='status'>
-//         <span className='sr-only'>Loading...</span>
-//       </div>
-//     ) : (
-//       <Provider store={store}>
-//         <Router>
-//           <Switch>
-//             <Route exact path='/' component={Home} />
-//             <PrivateRoute
-//               path='/admin/item'
-//               authenticated={this.state.authenticated}
-//               component={DeviceList}
-//             />
-//             <PublicRoute
-//               path='/signup'
-//               authenticated={this.state.authenticated}
-//               component={SignUp}
-//             />
-//             <PublicRoute
-//               path='/login'
-//               authenticated={this.state.authenticated}
-//               component={Login}
-//             />
-//           </Switch>
-//         </Router>
-//       </Provider>
-//     );
-//   }
-// }
-
-// export default App;

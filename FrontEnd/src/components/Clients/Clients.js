@@ -1,12 +1,13 @@
-import React, { useEffect } from "react";
-import { clientService } from "../../services";
-import { connect } from "react-redux";
-import { useSelector, useDispatch } from "react-redux";
-import { ClientReducer } from "../../redux/Reducers/ClientReducer";
+import React, { useEffect } from 'react';
+import { clientService } from '../../services';
+import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { ClientReducer } from '../../redux/Reducers/ClientReducer';
 
 function Clients(props) {
+  const { clientList } = props;
   // useSelector thay cho mapStateToProps
-  const clientList = useSelector((state) => state.ClientReducer.clientList);
+  // const clientList = useSelector((state) => state.ClientReducer.clientList);
   const dispatch = useDispatch();
   const getClientList = () => {
     clientService
@@ -14,7 +15,7 @@ function Clients(props) {
       .then((res) => {
         console.log(res.data);
         dispatch({
-          type: "FETCH_CLIENT",
+          type: 'FETCH_CLIENT',
           payload: res.data,
         });
       })
@@ -25,6 +26,7 @@ function Clients(props) {
     getClientList();
   }, []);
 
+  console.log('client', clientList);
   const renderClient = () => {
     return clientList?.map((client, index) => {
       return (
@@ -35,13 +37,13 @@ function Clients(props) {
           <td>{client.email}</td>
           <td>{client.client_image}</td>
           <td>
-            <button className="btn btn-primary">
-              <i class="fas fa-user-edit"></i>
+            <button className='btn btn-primary'>
+              <i className='fas fa-user-edit'></i>
             </button>
           </td>
           <td>
-            <button className="btn btn-danger">
-              <i class="fas fa-trash-alt"></i>
+            <button className='btn btn-danger'>
+              <i className='fas fa-trash-alt'></i>
             </button>
           </td>
         </tr>
@@ -51,7 +53,7 @@ function Clients(props) {
 
   return (
     <>
-      <table className="table">
+      <table className='table'>
         <thead>
           <tr>
             <th>ID</th>

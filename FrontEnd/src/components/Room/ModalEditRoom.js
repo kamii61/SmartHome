@@ -60,7 +60,7 @@ const ModalEditRoom = (props) => {
           props.getRoomById(props.room_id);
         }}
       >
-        <i class='fa fa-edit'></i>
+        <i className='fa fa-edit'></i>
       </button>
 
       <div

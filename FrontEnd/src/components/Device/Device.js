@@ -12,41 +12,30 @@ const socket = io.connect('http://localhost:8080/Room', {
 function Device(props) {
   const { item_id, item_name, item_image } = props.item;
 
-  //let { item_name } = this.props.item;
-  const [ledStatus, setLedStatus] = useState(0);
+  const [gas, setGas] = useState({ topic: 'GAS', message: 0 });
+  const [ldr, setLdr] = useState({ topic: 'LDR', message: 1 });
 
   useEffect(() => {
     socket.on('connect', () => {
       console.log('socket connected');
     });
+
+    socket.on(gas.topic, (msg) => {
+      setGas({ ...gas }, (gas.message = msg));
+    });
+    socket.on(gas.topic, (msg) => {
+      setGas({ ...gas }, (gas.message = msg));
+    });
+
+    socket.on(ldr, (msg) => {
+      setLdr({ ...ldr }, (ldr.message = msg));
+    });
   }, []);
 
-  // onChange input
-  const handleChange = (e) => {
-    let { checked } = e.target;
-    setLedStatus(checked);
-
-    if (!checked) {
-      setLedStatus(1);
-      console.log('ledStatus', ledStatus);
-    } else {
-      setLedStatus(0);
-      console.log('ledStatus', ledStatus);
-    }
-
-    var json = {
-      led: ledStatus,
-    };
-    console.log('json', json);
-    socket.emit('LED', json);
-  };
-
-  // Delete room
   const deleteItem = (item_id) => {
     itemService
       .deleteItem(item_id)
       .then((res) => {
-        // console.log(res.data);
         props.dispatch({
           type: 'DELETE_ITEM',
           payload: res.data,
@@ -58,13 +47,10 @@ function Device(props) {
       });
   };
 
-  // Edit room
-  // the first: get data by id
   const getItemById = (item_id) => {
     itemService
       .getItemByID(item_id)
       .then((res) => {
-        //console.log(res.data);
         props.dispatch({
           type: 'GET_ITEM_ID',
           payload: res.data,
@@ -83,9 +69,10 @@ function Device(props) {
         <img
           className='card-img-top'
           src={`/images/items/${item_image}`}
-          width='200'
-          height='300'
+          width='200px'
+          height='300px'
           alt='img'
+          objectFit='cover'
         />
 
         <ModalEditDevice
@@ -100,21 +87,12 @@ function Device(props) {
             deleteItem(item_id);
           }}
         >
-          <i class='fa fa-times-circle'></i>
+          <i className='fa fa-times-circle'></i>
         </button>
       </div>
       <div className='card-body'>
-        <p>{!ledStatus ? 'On' : 'Off'}</p>
-
-        <label className='switch'>
-          <input
-            type='checkbox'
-            name='led'
-            value={ledStatus}
-            onChange={handleChange}
-          />
-          <span className='slider round' />
-        </label>
+        <h4>Value</h4>
+        <p>{item_name == 'Gas' ? gas.message : ldr.message}</p>
       </div>
     </div>
   );

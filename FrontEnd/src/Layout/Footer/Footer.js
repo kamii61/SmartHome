@@ -61,7 +61,7 @@ export default class Footer extends Component {
                 <li>
                   <a href='#'>
                     <i
-                      class='fab fa-facebook '
+                      className='fab fa-facebook '
                       style={{ color: '#2D4486' }}
                     ></i>
                   </a>
@@ -69,19 +69,19 @@ export default class Footer extends Component {
                 <li>
                   <a href='#'>
                     <i
-                      class='fab fa-google-plus'
+                      className='fab fa-google-plus'
                       style={{ color: '#D2352C' }}
                     ></i>
                   </a>
                 </li>
                 <li>
                   <a href='#'>
-                    <i class='fab fa-instagram'></i>
+                    <i className='fab fa-instagram'></i>
                   </a>
                 </li>
                 <li>
                   <a href='#'>
-                    <i class='fab fa-twitter-square'></i>
+                    <i className='fab fa-twitter-square'></i>
                   </a>
                 </li>
               </ul>

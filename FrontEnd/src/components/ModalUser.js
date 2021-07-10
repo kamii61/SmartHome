@@ -12,7 +12,7 @@ export default class ModalUser extends Component {
             data-toggle='modal'
             data-target='#modelUser'
           >
-            <i class='fa fa-home'></i>
+            <i className='fa fa-home'></i>
           </button>
           {/* Modal */}
           <div

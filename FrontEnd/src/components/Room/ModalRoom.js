@@ -63,7 +63,7 @@ const ModalRoom = (props) => {
         data-toggle='modal'
         data-target='#modelRoom'
       >
-        <i class='fa fa-plus'></i>
+        <i className='fa fa-plus'></i>
       </button>
       {/* Modal */}
       <div

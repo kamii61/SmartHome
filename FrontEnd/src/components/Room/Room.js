@@ -67,7 +67,7 @@ function Room(props) {
   };
 
   return (
-    <div>
+    <div className='col-12 col-md-6'>
       {/* room */}
 
       <div className='card mt-4'>
@@ -98,7 +98,7 @@ function Room(props) {
               deleteRoom(room_id);
             }}
           >
-            <i class='fa fa-times-circle'></i>
+            <i className='fa fa-times-circle'></i>
           </button>
         </div>
         <div className='card-body'>
